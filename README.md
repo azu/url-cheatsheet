@@ -13,7 +13,7 @@ const url = `https://example.com?q=${query}`;
 ```
 
 This example does not consider that `query` includes `&` or `?` that is required to escape.
-Basically, you should not concat url as string.
+Basically, you should not concat url as string. It is unsafe.
 
 ## Base URL + Path 
 
