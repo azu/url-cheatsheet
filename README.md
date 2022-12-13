@@ -49,7 +49,7 @@ const q = "query";
 const page = 1;
 const base = "https://example.com";
 const url = new URL(base);
-url.search new URLSearchParams({
+url.search = new URLSearchParams({
     q,
     page
 });
