@@ -17,7 +17,7 @@ Basically, you should not concat url as string.
 
 ## Base URL + Path 
 
-Use [`new URL(pathname, base)`](https://developer.mozilla.org/docs/Web/API/URL/URL)).
+Use [`new URL(pathname, base)`](https://developer.mozilla.org/docs/Web/API/URL/URL).
 
 ```js
 const base = "https://example.com";
@@ -54,4 +54,15 @@ url.search new URLSearchParams({
     page
 });
 console.log(url.toString()); // https://example.com/?q=query&page=1
+```
+
+## Get parameter value from URL
+
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
+
+```js
+const inputURL = "https://example.com/?q=query&page=1";
+const url = new URL(inputURL);
+const q = url.searchParams.get("q");
+console.log(q); // query
 ```
