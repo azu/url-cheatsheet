@@ -37,7 +37,7 @@ Use [`new URL(pathname, base)`](https://developer.mozilla.org/docs/Web/API/URL/U
 const base = "https://example.com";
 const pathname = "/path/to/page";
 const result = new URL(pathname, base);
-console.log(result.toString()); // https://example.com/path/to/page
+console.log(result.toString()); // => "https://example.com/path/to/page"
 ```
 
 ## Get parameter from URL
@@ -48,7 +48,7 @@ Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchPa
 const inputURL = "https://example.com/?q=query&page=1";
 const url = new URL(inputURL);
 const q = url.searchParams.get("q");
-console.log(q); // query
+console.log(q); // => "query"
 ```
 
 ## Get multiple parameters as array from URL
@@ -75,7 +75,7 @@ const params = new URLSearchParams({
     q,
     page
 });
-console.log(url + "?" + params); // https://example.com/?q=query&page=1
+console.log(url + "?" + params); // => "https://example.com/?q=query&page=1"
 ```
 
 or 
@@ -89,7 +89,7 @@ url.search = new URLSearchParams({
     q,
     page
 });
-console.log(url.toString()); // https://example.com/?q=query&page=1
+console.log(url.toString()); // => "https://example.com/?q=query&page=1"
 ```
 
 ## Update parameter of URL
@@ -100,7 +100,7 @@ Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL)'s [`searchParams
 const inputURL = "https://example.com/?q=query&page=1";
 const url = new URL(inputURL);
 url.searchParams.set("q", "update");
-console.log(url.toString()); // "https://example.com/?q=update&page=1"
+console.log(url.toString()); // => "https://example.com/?q=update&page=1"
 ```
 
 ## Remove parameter from URL
@@ -111,7 +111,7 @@ Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchPa
 const inputURL = "https://example.com/?q=query&page=1";
 const url = new URL(inputURL);
 url.searchParams.delete("q");
-console.log(url.toString()); // "https://example.com/?page=1"
+console.log(url.toString()); // => "https://example.com/?page=1"
 ```
 
 ## Filter parameters
