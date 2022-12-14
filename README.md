@@ -127,7 +127,7 @@ const allowedParameterNames = ["a", "d"];
 url.search = new URLSearchParams(Array.from(url.searchParams).filter(([key, value]) => {
   return allowedParameterNames.includes(key);
 }));
-console.log(url.toString()); // "https://example.com/?a=1&d=4"
+console.log(url.toString()); // => "https://example.com/?a=1&d=4"
 ```
 
 ## Validate URL
