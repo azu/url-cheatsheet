@@ -60,13 +60,24 @@ console.log(url.toString()); // https://example.com/?q=query&page=1
 
 ## Get parameter from URL
 
-Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams#get](https://developer.mozilla.org/docs/Web/API/URLSearchParams/get)
 
 ```js
 const inputURL = "https://example.com/?q=query&page=1";
 const url = new URL(inputURL);
 const q = url.searchParams.get("q");
 console.log(q); // query
+```
+
+## Get multiple parameters as array from URL
+
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams#getAll](https://developer.mozilla.org/docs/Web/API/URLSearchParams/getAll)
+
+```js
+const inputURL = "https://example.com/?q=query&lang=en_US&lang=ja_JP";
+const url = new URL(inputURL);
+const langs = url.searchParams.getAll("lang");
+console.log(langs); // ["en_US", "ja_JP"]
 ```
 
 ## Remove parameter from URL
