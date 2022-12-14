@@ -19,6 +19,8 @@ Basically, you should not concat url as string. It is unsafe.
 
 Use [`new URL(pathname, base)`](https://developer.mozilla.org/docs/Web/API/URL/URL).
 
+- keywords: url-join, join path
+
 ```js
 const base = "https://example.com";
 const pathname = "/path/to/page";
