@@ -149,7 +149,7 @@ console.log(isValidURL("https://example.com")); // => true
 console.log(isValidURL("https/example.com")); // => false
 ```
 
-## Is https url?
+## Check URL is HTTP
 
 Check [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL)'s [`protocol`](https://developer.mozilla.org/docs/Web/API/URL/protocol) property.
 
