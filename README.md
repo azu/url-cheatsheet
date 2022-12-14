@@ -25,6 +25,7 @@ const url = `https://example.com?q=${query}`;
 This example does not consider that `query` includes `&` or `?` that is required to escape.
 Basically, you should not concat url as string. It is unsafe.
 
+- [Client-side HTTP parameter pollution (reflected) - PortSwigger](https://portswigger.net/kb/issues/00501400_client-side-http-parameter-pollution-reflected)
 
 ## Base URL + Path 
 
