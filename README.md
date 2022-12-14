@@ -40,6 +40,28 @@ const result = new URL(pathname, base);
 console.log(result.toString()); // https://example.com/path/to/page
 ```
 
+## Get parameter from URL
+
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams#get](https://developer.mozilla.org/docs/Web/API/URLSearchParams/get)
+
+```js
+const inputURL = "https://example.com/?q=query&page=1";
+const url = new URL(inputURL);
+const q = url.searchParams.get("q");
+console.log(q); // query
+```
+
+## Get multiple parameters as array from URL
+
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams#getAll](https://developer.mozilla.org/docs/Web/API/URLSearchParams/getAll)
+
+```js
+const inputURL = "https://example.com/?q=query&lang=en_US&lang=ja_JP";
+const url = new URL(inputURL);
+const langs = url.searchParams.getAll("lang");
+console.log(langs); // ["en_US", "ja_JP"]
+```
+
 ## Add parameters to URL
 
 Use [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
@@ -70,26 +92,15 @@ url.search = new URLSearchParams({
 console.log(url.toString()); // https://example.com/?q=query&page=1
 ```
 
-## Get parameter from URL
+## Update parameter of URL
 
-Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams#get](https://developer.mozilla.org/docs/Web/API/URLSearchParams/get)
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL)'s [`searchParams`](https://developer.mozilla.org/docs/Web/API/URL/searchParams) property.
 
 ```js
 const inputURL = "https://example.com/?q=query&page=1";
 const url = new URL(inputURL);
-const q = url.searchParams.get("q");
-console.log(q); // query
-```
-
-## Get multiple parameters as array from URL
-
-Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams#getAll](https://developer.mozilla.org/docs/Web/API/URLSearchParams/getAll)
-
-```js
-const inputURL = "https://example.com/?q=query&lang=en_US&lang=ja_JP";
-const url = new URL(inputURL);
-const langs = url.searchParams.getAll("lang");
-console.log(langs); // ["en_US", "ja_JP"]
+url.searchParams.set("q", "update");
+console.log(url.toString()); // "https://example.com/?q=update&page=1"
 ```
 
 ## Remove parameter from URL
