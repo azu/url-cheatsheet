@@ -7,13 +7,24 @@ URL manipulation cheatsheet for JavaScript.
 Please DO NOT concat url and parameters as string.
 
 ```js
-// THIS EXAMPLE IS UNSAFE
+// DO NOT
+const name = "<user input>"
+const url = `https://example.com/user/${name}`;
+```
+
+This code may have directory traversal vulnerbility.
+
+- Related: [What is directory traversal, and how to prevent it? | Web Security Academy](https://portswigger.net/web-security/file-path-traversal)
+
+```js
+// DO NOT
 const query = "<user input>"
 const url = `https://example.com?q=${query}`;
 ```
 
 This example does not consider that `query` includes `&` or `?` that is required to escape.
 Basically, you should not concat url as string. It is unsafe.
+
 
 ## Base URL + Path 
 
