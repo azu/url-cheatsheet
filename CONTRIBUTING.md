@@ -16,7 +16,7 @@ Fill next template and Submit PR!
 
 [test.mjs](https://github.com/azu/url-cheatsheet/blob/main/test.mjs) execute each examples and check the results.
 
-You can use `express; => "result"` or `console.log(express); => "result"` syntax for testing.
+You can use `expression; => "result"` or `console.log(expression); => "result"` syntax for testing.
 
 Example:
 
