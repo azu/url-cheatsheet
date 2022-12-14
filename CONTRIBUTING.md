@@ -2,14 +2,15 @@
 
 ## Add new section
 
-```
-## TITLE
+Fill next template and Submit PR!
 
-Short Description
+    ## TITLE
 
-```js
-// Example Code
-```
+    Short Description
+
+    ```js
+    // Example Code
+    ```
 
 ## Tests
 
