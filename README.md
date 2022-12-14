@@ -7,7 +7,7 @@ URL manipulation cheatsheet for JavaScript.
 Please DO NOT concat url and parameters as string.
 
 ```js
-// THIS EXAMPLE IS UNSAGE
+// THIS EXAMPLE IS UNSAFE
 const query = "<user input>"
 const url = `https://example.com?q=${query}`;
 ```
