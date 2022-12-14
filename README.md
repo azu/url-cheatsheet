@@ -95,3 +95,41 @@ url.search = new URLSearchParams(Array.from(url.searchParams).filter(([key, valu
 }));
 console.log(url.toString()); // "https://example.com/?a=1&d=4"
 ```
+
+## Validate URL
+
+[`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) throw an error when parsing invalid url string.
+
+- Related: [Secure JavaScript URL validation | Snyk](https://snyk.io/blog/secure-javascript-url-validation/)
+
+```js
+const isValidURL = (urlString) => {
+  try {
+    new URL(urlString); // if `url` is invalid, throw an erorr
+    return true;
+  } catch {
+    return false;
+  }
+};
+console.log(isValidURL("https://example.com")); // => true
+console.log(isValidURL("https/example.com")); // => false
+```
+
+## Is https url?
+
+Check [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL)'s [`protocol`](https://developer.mozilla.org/docs/Web/API/URL/protocol) property.
+
+```js
+const isHttpURL = (urlString) => {
+  try {
+    const url = new URL(urlString); // if `url` is invalid, throw an erorr
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+console.log(isHttpURL("http://example.com")); // => true
+console.log(isHttpURL("https://example.com")); // => true
+console.log(isHttpURL("ftp://example.com")); // => false
+console.log(isHttpURL("https/example.com")); // => false
+```
