@@ -105,7 +105,7 @@ console.log(url.toString()); // "https://example.com/?a=1&d=4"
 ```js
 const isValidURL = (urlString) => {
   try {
-    new URL(urlString); // if `url` is invalid, throw an erorr
+    new URL(urlString); // if `urlString` is invalid, throw an erorr
     return true;
   } catch {
     return false;
@@ -122,7 +122,7 @@ Check [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL)'s [`protocol`]
 ```js
 const isHttpURL = (urlString) => {
   try {
-    const url = new URL(urlString); // if `url` is invalid, throw an erorr
+    const url = new URL(urlString); // if `urlString` is invalid, throw an erorr
     return url.protocol === "http:" || url.protocol === "https:";
   } catch {
     return false;
