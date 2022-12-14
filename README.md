@@ -80,7 +80,7 @@ console.log(url.toString()); // "https://example.com/?page=1"
 
 ## Filter parameters
 
-Only allow `a` and `d` parameters.
+Allow only `a` and `d` parameters.
 
 - keywords: pick, white list, allow list
 
