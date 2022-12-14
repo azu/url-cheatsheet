@@ -77,3 +77,19 @@ const url = new URL(inputURL);
 url.searchParams.delete("q");
 console.log(url.toString()); // "https://example.com/?page=1"
 ```
+
+## Filter parameters
+
+Only allow `a` and `d` parameters.
+
+- keywords: pick, white list, allow list
+
+```js
+const base = "https://example.com/?a=1&b=2&c=3&d=4";
+const url = new URL(base);
+const allowedParameterNames = ["a", "d"];
+url.search = new URLSearchParams(Array.from(url.searchParams).filter(([key, value]) => {
+  return allowedParameterNames.includes(key);
+}));
+console.log(url.toString()); // "https://example.com/?a=1&d=4"
+```
