@@ -56,7 +56,7 @@ url.search = new URLSearchParams({
 console.log(url.toString()); // https://example.com/?q=query&page=1
 ```
 
-## Get parameter value from URL
+## Get parameter from URL
 
 Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
 
@@ -65,4 +65,15 @@ const inputURL = "https://example.com/?q=query&page=1";
 const url = new URL(inputURL);
 const q = url.searchParams.get("q");
 console.log(q); // query
+```
+
+## Remove parameter from URL
+
+Use [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) and [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams)
+
+```js
+const inputURL = "https://example.com/?q=query&page=1";
+const url = new URL(inputURL);
+url.searchParams.delete("q");
+console.log(url.toString()); // "https://example.com/?page=1"
 ```
