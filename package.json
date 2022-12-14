@@ -1,0 +1,23 @@
+{
+  "name": "url-cheatsheet",
+  "version": "1.0.0",
+  "description": "URL manipulation cheatsheet for JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/url-cheatsheet.git"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/url-cheatsheet/issues"
+  },
+  "homepage": "https://github.com/azu/url-cheatsheet#readme",
+  "devDependencies": {
+    "@power-doctest/markdown": "^5.3.2",
+    "@power-doctest/tester": "^5.3.2"
+  }
+}
