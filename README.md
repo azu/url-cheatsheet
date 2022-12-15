@@ -23,9 +23,9 @@ const url = `https://example.com/user/${encodeURIComponent(name)}`;
 console.log(url); // => "https://example.com/user/%3Cuser%20input%3E"
 ```
 
-## DO NOT: concat parameters without escape
+## DO NOT: concat parameter and user input without escape
 
-Please DO NOT concat parameters without escape
+Please DO NOT concat parameter and user input without escape
 
 ```js
 // DO NOT
