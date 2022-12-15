@@ -2,7 +2,7 @@
 
 URL manipulation cheatsheet for JavaScript.
 
-## DO NOT: concat url without escape
+## DO NOT: concat url and user input without escape
 
 Please DO NOT concat url and user input without escape
 
@@ -23,7 +23,7 @@ const url = `https://example.com/user/${encodeURIComponent(name)}`;
 console.log(url); // => "https://example.com/user/%3Cuser%20input%3E"
 ```
 
-## DO NOT: concat parameters as string
+## DO NOT: concat parameters without escape
 
 Please DO NOT concat parameters without escape
 
