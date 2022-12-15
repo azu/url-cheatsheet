@@ -44,8 +44,7 @@ const url = `https://example.com?q=${encodeURIComponent(query)}`;
 console.log(url); // => "https://example.com?q=%3Cuser%20input%3E"
 ```
 
-Or, You can use [URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams).
-[URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams) escape each parameters automatically.
+Or, You can use [URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams) that escape each parameters automatically.
 
 - Related: [Client-side HTTP parameter pollution (reflected) - PortSwigger](https://portswigger.net/kb/issues/00501400_client-side-http-parameter-pollution-reflected)
 
