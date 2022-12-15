@@ -2,7 +2,7 @@
 
 URL manipulation cheatsheet for JavaScript.
 
-## DO NOT: concat url and user input without escape
+## DO NOT: concat url without escape
 
 Please DO NOT concat url and user input without escape
 
@@ -25,7 +25,7 @@ console.log(url); // => "https://example.com/user/%3Cuser%20input%3E"
 
 ## DO NOT: concat parameters as string
 
-Please DO NOT concat parameters as string.
+Please DO NOT concat parameters without escape
 
 ```js
 // DO NOT
