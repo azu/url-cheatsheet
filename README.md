@@ -31,7 +31,7 @@ Please DO NOT concat parameters without escape
 // DO NOT
 const query = "<user input>"
 const url = `https://example.com?q=${query}`;
-console.log(url); // => "https://example.com?q=$<user input>"
+console.log(url); // => "https://example.com?q=<user input>"
 ```
 
 This example does not consider that `query` includes `&` or `?` that is required to escape.
