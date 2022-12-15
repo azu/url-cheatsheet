@@ -2,28 +2,50 @@
 
 URL manipulation cheatsheet for JavaScript.
 
-## DO NOT
+## DO NOT: concat url and user input without escape
 
-Please DO NOT concat url and parameters as string.
+Please DO NOT concat url and user input without escape
 
 ```js
 // DO NOT
 const name = "<user input>"
 const url = `https://example.com/user/${name}`;
+console.log(url); // => "https://example.com/user/<user input>"
 ```
 
 This code may have directory traversal vulnerbility.
+You should escape the `name` by `encodeURIComponent`.
 
-- Related: [What is directory traversal, and how to prevent it? | Web Security Academy](https://portswigger.net/web-security/file-path-traversal)
+```js
+// DO
+const name = "<user input>"
+const url = `https://example.com/user/${encodeURIComponent(name)}`;
+console.log(url); // => "https://example.com/user/%3Cuser%20input%3E"
+```
+
+## DO NOT: concat parameters as string
+
+Please DO NOT concat parameters as string.
 
 ```js
 // DO NOT
 const query = "<user input>"
 const url = `https://example.com?q=${query}`;
+console.log(url); // => "https://example.com?q=$<user input>"
 ```
 
 This example does not consider that `query` includes `&` or `?` that is required to escape.
-Basically, you should not concat url as string. It is unsafe.
+You should escape the `query` by `encodeURIComponent`.
+
+```js
+// DO
+const query = "<user input>"
+const url = `https://example.com?q=${encodeURIComponent(query)}`;
+console.log(url); // => "https://example.com?q=%3Cuser%20input%3E"
+```
+
+Or, You can use [URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams).
+[URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams) escape each parameters automatically.
 
 - Related: [Client-side HTTP parameter pollution (reflected) - PortSwigger](https://portswigger.net/kb/issues/00501400_client-side-http-parameter-pollution-reflected)
 
@@ -38,6 +60,15 @@ const base = "https://example.com";
 const pathname = "/path/to/page";
 const result = new URL(pathname, base);
 console.log(result.toString()); // => "https://example.com/path/to/page"
+```
+
+If the pathname include user input, you should escape it by `encodeURIComponent`.
+
+```js
+const base = "https://example.com/";
+const name = "<user input>"
+const result = new URL(`/user/${encodeURIComponent(name)}`, base);
+console.log(result.toString()); // => "https://example.com/user/%3Cuser%20input%3E"
 ```
 
 ## Get parameter from URL
@@ -90,6 +121,20 @@ url.search = new URLSearchParams({
     page
 });
 console.log(url.toString()); // => "https://example.com/?q=query&page=1"
+```
+
+:memo: `URLSearchParams` escape each parameter automtically.
+
+```js
+const q = "<user input>";
+const page = 1;
+const base = "https://example.com";
+const url = new URL(base);
+url.search = new URLSearchParams({
+    q,
+    page
+});
+console.log(url.toString()); // => "https://example.com/?q=%3Cuser+input%3E&page=1"
 ```
 
 ## Update parameter of URL
