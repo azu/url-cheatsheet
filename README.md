@@ -174,9 +174,10 @@ url.search = new URLSearchParams(Array.from(url.searchParams).filter(([key, valu
 console.log(url.toString()); // => "https://example.com/?a=1&d=4"
 ```
 
-## Check URL is valid
+## Check URL is Absolute-URL
 
-[`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) throw an error when parsing invalid url string.
+[`new URL(urlString)`](https://developer.mozilla.org/docs/Web/API/URL/URL) throw an error when parsing relative url string.
+As a result, you can use `URL` for checking URL is absolute-URL that starts with a schema like `https:`
 
 - Related: [Secure JavaScript URL validation | Snyk](https://snyk.io/blog/secure-javascript-url-validation/)
 
