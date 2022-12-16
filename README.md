@@ -174,7 +174,7 @@ url.search = new URLSearchParams(Array.from(url.searchParams).filter(([key, valu
 console.log(url.toString()); // => "https://example.com/?a=1&d=4"
 ```
 
-## Validate URL
+## Check URL is valid
 
 [`URL`](https://developer.mozilla.org/docs/Web/API/URL/URL) throw an error when parsing invalid url string.
 
