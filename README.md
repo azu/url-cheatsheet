@@ -13,7 +13,7 @@ const url = `https://example.com/user/${name}`;
 console.log(url); // => "https://example.com/user/<user input>"
 ```
 
-This code may have directory traversal vulnerbility.
+This code may have directory traversal vulnerability.
 You should escape the `name` by `encodeURIComponent`.
 
 ```js
