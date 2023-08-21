@@ -8,7 +8,7 @@ Please DO NOT concat url and user input without escape
 
 ```js
 // DO NOT
-const name = "<user input>"
+const name = "<user input>";
 const url = `https://example.com/user/${name}`;
 console.log(url); // => "https://example.com/user/<user input>"
 ```
@@ -18,10 +18,27 @@ You should escape the `name` by `encodeURIComponent`.
 
 ```js
 // DO
-const name = "<user input>"
+const name = "<user input>";
 const url = `https://example.com/user/${encodeURIComponent(name)}`;
 console.log(url); // => "https://example.com/user/%3Cuser%20input%3E"
 ```
+
+Addtionaly, You should reject [`.`](https://url.spec.whatwg.org/#single-dot-path-segment) and [`..`](https://url.spec.whatwg.org/#double-dot-path-segment) as a name.
+Because `encodeURIComponent("..")` is `..`, it may have directory traversal vulnerability.
+
+```js
+// DO
+const name = "<user input>";
+if (name === ".." || name === ".") {
+  throw new Error("Invalid name");
+}
+const url = `https://example.com/user/${encodeURIComponent(name)}`;
+console.log(url); // => "https://example.com/user/%3Cuser%20input%3E"
+```
+
+- <https://url.spec.whatwg.org/#example-url-parsing>
+- [Path Traversal | OWASP Foundation](https://owasp.org/www-community/attacks/Path_Traversal)
+- [Path Traversal and SSRF - Security, Tech, And Ramblings](https://smarpo.com/posts/path-traversal-and-ssrf/)
 
 ## DO NOT: concat parameter and user input without escape
 
@@ -29,7 +46,7 @@ Please DO NOT concat parameter and user input without escape
 
 ```js
 // DO NOT
-const query = "<user input>"
+const query = "<user input>";
 const url = `https://example.com?q=${query}`;
 console.log(url); // => "https://example.com?q=<user input>"
 ```
@@ -39,7 +56,7 @@ You should escape the `query` by `encodeURIComponent`.
 
 ```js
 // DO
-const query = "<user input>"
+const query = "<user input>";
 const url = `https://example.com?q=${encodeURIComponent(query)}`;
 console.log(url); // => "https://example.com?q=%3Cuser%20input%3E"
 ```
@@ -48,7 +65,7 @@ Or, You can use [URLSearchParams()](https://developer.mozilla.org/en-US/docs/Web
 
 - Related: [Client-side HTTP parameter pollution (reflected) - PortSwigger](https://portswigger.net/kb/issues/00501400_client-side-http-parameter-pollution-reflected)
 
-## Base URL + Path 
+## Base URL + Path
 
 Use [`new URL(pathname, base)`](https://developer.mozilla.org/docs/Web/API/URL/URL).
 
@@ -65,10 +82,29 @@ If the pathname include user input, you should escape it by `encodeURIComponent`
 
 ```js
 const base = "https://example.com/";
-const name = "<user input>"
+const name = "<user input>";
 const result = new URL(`/user/${encodeURIComponent(name)}`, base);
 console.log(result.toString()); // => "https://example.com/user/%3Cuser%20input%3E"
 ```
+
+Addtionaly, You should reject [`.`](https://url.spec.whatwg.org/#single-dot-path-segment) and [`..`](https://url.spec.whatwg.org/#double-dot-path-segment) as a name.
+Because `encodeURIComponent("..")` is `..`, it may have directory traversal vulnerability.
+
+```js
+// DO
+const base = "https://example.com/";
+const name = "<user input>";
+if (name === ".." || name === ".") {
+  throw new Error("Invalid name");
+}
+const result = new URL(`/user/${encodeURIComponent(name)}`, base);
+console.log(result.toString()); // => "https://example.com/user/%3Cuser%20input%3E"
+```
+
+- <https://url.spec.whatwg.org/#example-url-parsing>
+- [Path Traversal | OWASP Foundation](https://owasp.org/www-community/attacks/Path_Traversal)
+- [Path Traversal and SSRF - Security, Tech, And Ramblings](https://smarpo.com/posts/path-traversal-and-ssrf/)
+
 
 ## Get parameter from URL
 
@@ -102,13 +138,13 @@ const page = 1;
 const base = "https://example.com";
 const url = new URL(base);
 const params = new URLSearchParams({
-    q,
-    page
+  q,
+  page,
 });
 console.log(url + "?" + params); // => "https://example.com/?q=query&page=1"
 ```
 
-or 
+or
 
 ```js
 const q = "query";
@@ -116,8 +152,8 @@ const page = 1;
 const base = "https://example.com";
 const url = new URL(base);
 url.search = new URLSearchParams({
-    q,
-    page
+  q,
+  page,
 });
 console.log(url.toString()); // => "https://example.com/?q=query&page=1"
 ```
@@ -130,8 +166,8 @@ const page = 1;
 const base = "https://example.com";
 const url = new URL(base);
 url.search = new URLSearchParams({
-    q,
-    page
+  q,
+  page,
 });
 console.log(url.toString()); // => "https://example.com/?q=%3Cuser+input%3E&page=1"
 ```
@@ -168,9 +204,11 @@ Allow only `a` and `d` parameters.
 const base = "https://example.com/?a=1&b=2&c=3&d=4";
 const url = new URL(base);
 const allowedParameterNames = ["a", "d"];
-url.search = new URLSearchParams(Array.from(url.searchParams).filter(([key, value]) => {
-  return allowedParameterNames.includes(key);
-}));
+url.search = new URLSearchParams(
+  Array.from(url.searchParams).filter(([key, value]) => {
+    return allowedParameterNames.includes(key);
+  })
+);
 console.log(url.toString()); // => "https://example.com/?a=1&d=4"
 ```
 
